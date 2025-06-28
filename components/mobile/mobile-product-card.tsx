@@ -22,6 +22,7 @@ export default function MobileProductCard({
 }: MobileProductCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [touched, setTouched] = useState(false);
+  const [isPressed, setIsPressed] = useState(false);
   
   const { isInWishlist, addToWishlist, removeFromWishlist } = useWishlistStore();
   const { addToCart } = useCartStore();
@@ -43,7 +44,7 @@ export default function MobileProductCard({
     }
     
     // Haptic feedback on mobile
-    if ('vibrate' in navigator) {
+    if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
       navigator.vibrate(50);
     }
   };
@@ -61,7 +62,7 @@ export default function MobileProductCard({
     });
     
     // Haptic feedback
-    if ('vibrate' in navigator) {
+    if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
       navigator.vibrate([50, 50, 50]);
     }
   };
@@ -69,6 +70,22 @@ export default function MobileProductCard({
   const handleTouch = () => {
     setTouched(true);
     setTimeout(() => setTouched(false), 150);
+  };
+
+  const handleCardPress = () => {
+    setIsPressed(true);
+    // Haptic feedback on mobile devices
+    if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
+      navigator.vibrate(50);
+    }
+  };
+
+  const handleQuickAction = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    // Strong haptic feedback for quick actions
+    if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
+      navigator.vibrate([50, 50, 50]);
+    }
   };
 
   if (layout === 'list') {

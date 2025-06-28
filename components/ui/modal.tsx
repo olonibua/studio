@@ -23,20 +23,24 @@ const Modal: React.FC<ModalProps> = ({
   showCloseButton = true,
 }) => {
   React.useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+    if (!isOpen) return;
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && onClose) {
         onClose();
       }
     };
 
-    if (isOpen) {
+    if (typeof document !== 'undefined') {
       document.addEventListener("keydown", handleEscape);
       document.body.style.overflow = "hidden";
     }
 
     return () => {
-      document.removeEventListener("keydown", handleEscape);
-      document.body.style.overflow = "unset";
+      if (typeof document !== 'undefined') {
+        document.removeEventListener("keydown", handleEscape);
+        document.body.style.overflow = "unset";
+      }
     };
   }, [isOpen, onClose]);
 

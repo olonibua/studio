@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useCartStore } from "@/store/cart-store";
@@ -15,7 +16,7 @@ interface NavItem {
   requiresAuth?: boolean;
 }
 
-export default function MobileBottomNav() {
+function MobileBottomNavContent() {
   const pathname = usePathname();
   const { items: cartItems } = useCartStore();
   const { getWishlistCount } = useWishlistStore();
@@ -26,7 +27,7 @@ export default function MobileBottomNav() {
 
   const handleNavClick = () => {
     // Haptic feedback on mobile
-    if ('vibrate' in navigator) {
+    if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
       navigator.vibrate(50);
     }
   };
@@ -168,5 +169,30 @@ export default function MobileBottomNav() {
         })}
       </div>
     </nav>
+  );
+}
+
+function LoadingNav() {
+  return (
+    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-background-primary/95 backdrop-blur-md border-t border-neutral-800">
+      <div className="flex items-center justify-around px-2 py-2 pb-safe">
+        <div className="animate-pulse flex space-x-4">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="flex flex-col items-center justify-center px-3 py-2">
+              <div className="w-6 h-6 bg-background-secondary rounded"></div>
+              <div className="w-8 h-2 bg-background-secondary rounded mt-1"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+export default function MobileBottomNav() {
+  return (
+    <Suspense fallback={<LoadingNav />}>
+      <MobileBottomNavContent />
+    </Suspense>
   );
 } 

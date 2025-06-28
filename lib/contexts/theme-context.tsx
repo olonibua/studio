@@ -17,9 +17,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Load theme from localStorage on mount
-    const savedTheme = localStorage.getItem("mosé-theme") as Theme;
-    if (savedTheme && (savedTheme === "black" || savedTheme === "white")) {
-      setTheme(savedTheme);
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem("mosé-theme") as Theme;
+      if (savedTheme && (savedTheme === "black" || savedTheme === "white")) {
+        setTheme(savedTheme);
+      }
     }
   }, []);
 
@@ -38,6 +40,23 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const toggleTheme = () => {
     setTheme(prevTheme => prevTheme === "black" ? "white" : "black");
+  };
+
+  const changeTheme = (theme: Theme) => {
+    setTheme(theme);
+    
+    if (typeof window !== 'undefined') {
+      // Save theme to localStorage and update document class
+      localStorage.setItem("mosé-theme", theme);
+
+      // Remove existing theme classes
+      document.documentElement.classList.remove("theme-black", "theme-white");
+      document.body.classList.remove("theme-black", "theme-white");
+
+      // Add new theme class
+      document.documentElement.classList.add(`theme-${theme}`);
+      document.body.classList.add(`theme-${theme}`);
+    }
   };
 
   return (

@@ -120,25 +120,43 @@ export default function MobileImageGallery({
   // Fullscreen mode
   const toggleFullscreen = () => {
     setIsFullscreen(!isFullscreen);
-    if (!isFullscreen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
   };
 
   // Close fullscreen on escape
   useEffect(() => {
+    if (isFullscreen) {
+      if (typeof document !== 'undefined') {
+        document.body.style.overflow = 'hidden';
+      }
+    } else {
+      if (typeof document !== 'undefined') {
+        document.body.style.overflow = 'auto';
+      }
+    }
+  }, [isFullscreen]);
+
+  useEffect(() => {
+    if (!isFullscreen) return;
+
     const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isFullscreen) {
-        toggleFullscreen();
+      if (e.key === 'Escape') {
+        setIsFullscreen(false);
+      } else if (e.key === 'ArrowLeft') {
+        goToImage(currentIndex - 1);
+      } else if (e.key === 'ArrowRight') {
+        goToImage(currentIndex + 1);
       }
     };
 
-    document.addEventListener('keydown', handleKeyPress);
+    if (typeof document !== 'undefined') {
+      document.addEventListener('keydown', handleKeyPress);
+    }
+
     return () => {
-      document.removeEventListener('keydown', handleKeyPress);
-      document.body.style.overflow = 'auto';
+      if (typeof document !== 'undefined') {
+        document.removeEventListener('keydown', handleKeyPress);
+        document.body.style.overflow = 'auto';
+      }
     };
   }, [isFullscreen]);
 

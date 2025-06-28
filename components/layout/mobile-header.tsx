@@ -24,18 +24,23 @@ export default function MobileHeader({
   const [searchVisible, setSearchVisible] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [installPrompt, setInstallPrompt] = useState<any>(null);
+  const [deferredPrompt, setDeferredPrompt] = useState<Event | null>(null);
+  const [canInstall, setCanInstall] = useState(false);
   
   const { user, logout } = useAuthStore();
   const { items: cartItems } = useCartStore();
   const { getWishlistCount } = useWishlistStore();
 
-  // PWA Install prompt handling
+  // PWA Install prompt detection
   useEffect(() => {
-    const handler = (e: any) => {
+    if (typeof window === 'undefined') return;
+    
+    const handler = (e: Event) => {
       e.preventDefault();
-      setInstallPrompt(e);
+      setDeferredPrompt(e as any);
+      setCanInstall(true);
     };
-
+    
     window.addEventListener('beforeinstallprompt', handler);
     return () => window.removeEventListener('beforeinstallprompt', handler);
   }, []);

@@ -14,7 +14,32 @@ export default function PWAInstallPrompt() {
   const [showPrompt, setShowPrompt] = useState(false);
   const [isInstalled, setIsInstalled] = useState(false);
 
+  const isPWA = () => {
+    if (typeof window === 'undefined') return false;
+    
+    // Check if the app is running as a PWA
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      return true;
+    }
+    
+    // Check for Android PWA
+    if (typeof document !== 'undefined' && document.referrer.includes('android-app://')) {
+      return true;
+    }
+    
+    // Check for iOS PWA
+    if ((window.navigator as any).standalone === true) {
+      return true;
+    }
+    
+    return false;
+  };
+
   useEffect(() => {
+    if (typeof window === 'undefined' || isPWA()) {
+      return;
+    }
+
     // Check if app is already installed
     const checkIfInstalled = () => {
       // Check for standalone mode (iOS)
@@ -104,7 +129,9 @@ export default function PWAInstallPrompt() {
     setShowPrompt(false);
     
     // Don't show again for 7 days
-    localStorage.setItem('pwa-install-dismissed', Date.now().toString());
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('pwa-install-dismissed', Date.now().toString());
+    }
     
     // Track dismissal
     if ('gtag' in window) {
@@ -116,6 +143,8 @@ export default function PWAInstallPrompt() {
 
   // Check if user dismissed recently
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const dismissedTime = localStorage.getItem('pwa-install-dismissed');
     if (dismissedTime) {
       const daysSinceDismissal = (Date.now() - parseInt(dismissedTime)) / (1000 * 60 * 60 * 24);

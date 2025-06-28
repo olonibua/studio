@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import Header from "@/components/layout/header";
@@ -12,7 +12,7 @@ import { useAuthStore } from "@/store/auth-store";
 import { formatPrice } from "@/lib/utils";
 import { Product } from "@/lib/types";
 
-export default function ProductDetailPage() {
+function ProductDetailContent() {
   const params = useParams();
   const router = useRouter();
   const { addToCart } = useCartStore();
@@ -399,5 +399,34 @@ export default function ProductDetailPage() {
         </div>
       )}
     </div>
+  );
+}
+
+function LoadingProduct() {
+  return (
+    <div className="min-h-screen bg-background-primary text-text-primary">
+      <Header />
+      <div className="container mx-auto px-4 pt-32 pb-16">
+        <div className="animate-pulse">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="aspect-square bg-background-secondary rounded-lg"></div>
+            <div className="space-y-6">
+              <div className="h-8 bg-background-secondary rounded w-3/4"></div>
+              <div className="h-4 bg-background-secondary rounded w-1/2"></div>
+              <div className="h-24 bg-background-secondary rounded"></div>
+              <div className="h-12 bg-background-secondary rounded w-1/3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function ProductDetailPage() {
+  return (
+    <Suspense fallback={<LoadingProduct />}>
+      <ProductDetailContent />
+    </Suspense>
   );
 } 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Header from "@/components/layout/header";
@@ -11,7 +11,7 @@ import { useWishlistStore } from "@/store/wishlist-store";
 import { formatPrice } from "@/lib/utils";
 import WishlistButton from "@/components/ui/wishlist-button";
 
-export default function BuyerDashboard() {
+function BuyerDashboardContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { user, logout } = useAuthStore();
@@ -299,5 +299,29 @@ export default function BuyerDashboard() {
         {renderTabContent()}
       </div>
     </div>
+  );
+}
+
+function LoadingDashboard() {
+  return (
+    <div className="min-h-screen bg-background-primary text-text-primary">
+      <Header />
+      <div className="container mx-auto px-4 pt-32 pb-16">
+        <div className="flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-text-primary mx-auto mb-4"></div>
+            <p className="text-text-muted">Loading dashboard...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function BuyerDashboard() {
+  return (
+    <Suspense fallback={<LoadingDashboard />}>
+      <BuyerDashboardContent />
+    </Suspense>
   );
 } 

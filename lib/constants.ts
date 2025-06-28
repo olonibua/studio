@@ -57,6 +57,10 @@ export const USER_ROLES = {
   ADMIN: 'admin'
 } as const;
 
+// Appwrite Database Configuration
+export const DATABASE_ID = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID || 'mose_database';
+export const USERS_COLLECTION_ID = process.env.NEXT_PUBLIC_APPWRITE_USERS_COLLECTION_ID || 'users';
+
 // Order Status
 export const ORDER_STATUS = {
   PENDING: 'pending',

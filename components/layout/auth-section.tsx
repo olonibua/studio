@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/store/auth-store";
 
 export default function AuthSection() {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
   const { user, isAuthenticated, logout, checkAuth } = useAuthStore();
 
   useEffect(() => {
@@ -17,7 +19,7 @@ export default function AuthSection() {
   const handleLogout = async () => {
     try {
       await logout();
-      window.location.href = '/';
+      router.push('/');
     } catch (error) {
       console.error('Logout error:', error);
     }

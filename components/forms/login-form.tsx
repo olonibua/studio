@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuthStore } from "@/store/auth-store";
@@ -19,6 +20,7 @@ type LoginFormData = z.infer<typeof loginSchema>;
 export default function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
   const { login, user } = useAuthStore();
 
   const {
@@ -38,11 +40,11 @@ export default function LoginForm() {
       const currentUser = useAuthStore.getState().user;
       // Redirect to role-specific dashboard
       if (currentUser?.role === 'seller') {
-        window.location.href = '/seller';
+        router.push('/seller');
       } else if (currentUser?.role === 'admin') {
-        window.location.href = '/admin';
+        router.push('/admin');
       } else {
-        window.location.href = '/buyer';
+        router.push('/buyer');
       }
     } catch (error: any) {
       console.error("Login error:", error);

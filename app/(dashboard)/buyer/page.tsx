@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Header from "@/components/layout/header";
 import { Card } from "@/components/ui/card";
@@ -13,20 +13,18 @@ import WishlistButton from "@/components/ui/wishlist-button";
 
 export default function BuyerDashboard() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { user, logout } = useAuthStore();
   const { items: wishlistItems } = useWishlistStore();
   const [activeTab, setActiveTab] = useState("overview");
 
   // Get tab from URL params if available
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const urlParams = new URLSearchParams(window.location.search);
-      const tab = urlParams.get('tab');
-      if (tab) {
-        setActiveTab(tab);
-      }
+    const tab = searchParams.get('tab');
+    if (tab) {
+      setActiveTab(tab);
     }
-  }, []);
+  }, [searchParams]);
 
   if (!user) {
     router.push('/login');

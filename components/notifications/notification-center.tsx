@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { formatPrice } from "@/lib/utils";
@@ -22,6 +23,7 @@ interface NotificationCenterProps {
 }
 
 export default function NotificationCenter({ isOpen, onClose }: NotificationCenterProps) {
+  const router = useRouter();
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [filter, setFilter] = useState<'all' | 'unread'>('all');
 
@@ -273,7 +275,7 @@ export default function NotificationCenter({ isOpen, onClose }: NotificationCent
                   onClick={() => {
                     markAsRead(notification.id);
                     if (notification.actionUrl) {
-                      window.location.href = notification.actionUrl;
+                      router.push(notification.actionUrl);
                     }
                   }}
                 >

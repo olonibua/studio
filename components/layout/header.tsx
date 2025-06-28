@@ -89,10 +89,10 @@ export default function Header() {
               </div>
 
               {/* Right Side Actions */}
-              <div className=" items-center space-x-4 ">
+              <div className=" items-center space-x-4 flex ">
                 {/* Theme Toggle */}
 
-                <div className="hidden md:block">
+                <div className="hidden md:flex">
                   <ThemeToggle />
                 </div>
 

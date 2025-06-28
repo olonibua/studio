@@ -1,5 +1,8 @@
 "use client";
 
+// Force dynamic rendering for authentication-dependent pages
+export const dynamic = 'force-dynamic';
+
 import { useState } from "react";
 import Header from "@/components/layout/header";
 import { Button } from "@/components/ui/button";

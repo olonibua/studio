@@ -11,6 +11,9 @@ import { useWishlistStore } from "@/store/wishlist-store";
 import { formatPrice } from "@/lib/utils";
 import WishlistButton from "@/components/ui/wishlist-button";
 
+// Force dynamic rendering for authentication-dependent pages
+export const dynamic = 'force-dynamic';
+
 function BuyerDashboardContent() {
   const router = useRouter();
   const searchParams = useSearchParams();

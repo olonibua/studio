@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/* CSS Variables for Theme System */
+:root {
+  /* Default theme (black) */
+  --background-primary: #000000;
+  --background-secondary: #111111;
+  --background-tertiary: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #888888;
+  --accent: #ffffff;
+  --neutral-800: #262626;
+  --neutral-700: #404040;
+}
+
+.theme-white {
+  /* White theme */
+  --background-primary: #ffffff;
+  --background-secondary: #f8f8f8;
+  --background-tertiary: #f0f0f0;
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --text-muted: #666666;
+  --accent: #000000;
+  --neutral-800: #e5e5e5;
+  --neutral-700: #d4d4d4;
+}
+
+/* Smooth transitions for theme changes */
+*,
+*::before,
+*::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Ensure theme variables are applied immediately */
+html {
+  color-scheme: light dark;
+}
+
+html.theme-black {
+  color-scheme: dark;
+}
+
+html.theme-white {
+  color-scheme: light;
+}
+
+/* Custom scrollbar for both themes */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Tailwind CSS custom classes using CSS variables */
+.bg-background-primary {
+  background-color: var(--background-primary);
+}
+
+.bg-background-secondary {
+  background-color: var(--background-secondary);
+}
+
+.bg-background-tertiary {
+  background-color: var(--background-tertiary);
+}
+
+.text-text-primary {
+  color: var(--text-primary);
+}
+
+.text-text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-text-muted {
+  color: var(--text-muted);
+}
+
+.bg-accent {
+  background-color: var(--accent);
+}
+
+.border-neutral-800 {
+  border-color: var(--neutral-800);
+}
+
+.border-neutral-700 {
+  border-color: var(--neutral-700);
+}
+
+/* Additional utility classes */
+.hover\:bg-text-secondary:hover {
+  background-color: var(--text-secondary);
+}
+
+.hover\:text-text-primary:hover {
+  color: var(--text-primary);
+}
+
+.hover\:text-text-secondary:hover {
+  color: var(--text-secondary);
+}
+
+.hover\:border-text-primary:hover {
+  border-color: var(--text-primary);
+}
+
+.placeholder\:text-text-muted::placeholder {
+  color: var(--text-muted);
+}
+
+/* Button focus states */
+.focus-visible\:ring-text-primary:focus-visible {
+  --tw-ring-color: var(--text-primary);
+}

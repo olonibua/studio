@@ -1,4 +1,8 @@
+"use client";
+
 import Header from "@/components/layout/header";
+import BecomeSellerButton from "@/components/ui/become-seller-button";
+import ShopCollectionButton from "@/components/ui/shop-collection-button";
 
 export default function HomePage() {
   return (
@@ -18,12 +22,15 @@ export default function HomePage() {
           </div>
           
           <div className="flex flex-col md:flex-row gap-4 justify-center mb-16">
-            <button className="bg-text-primary text-background-primary px-8 py-3 text-lg font-medium hover:bg-text-secondary transition-colors">
+            <ShopCollectionButton className="px-8 py-3 text-lg">
               SHOP COLLECTION
-            </button>
-            <button className="border border-text-primary text-text-primary px-8 py-3 text-lg font-medium hover:bg-text-primary hover:text-background-primary transition-colors">
+            </ShopCollectionButton>
+            <BecomeSellerButton 
+              variant="outline"
+              className="px-8 py-3 text-lg"
+            >
               BECOME A SELLER
-            </button>
+            </BecomeSellerButton>
           </div>
         </div>
       </section>

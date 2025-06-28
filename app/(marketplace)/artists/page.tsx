@@ -1,6 +1,7 @@
 import Header from "@/components/layout/header";
 import Link from "next/link";
 import { formatPrice } from "@/lib/utils";
+import BecomeSellerButton from "@/components/ui/become-seller-button";
 
 export default function ArtistsPage() {
   // Mock artists data
@@ -270,12 +271,9 @@ export default function ArtistsPage() {
               Join our community of talented African artists and showcase your work to art lovers worldwide
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/register?role=seller"
-                className="bg-text-primary text-background-primary px-6 py-3 rounded-md hover:bg-text-secondary transition-colors font-medium"
-              >
+              <BecomeSellerButton>
                 Become a Seller
-              </Link>
+              </BecomeSellerButton>
               <Link
                 href="/about"
                 className="border border-text-primary text-text-primary px-6 py-3 rounded-md hover:bg-text-primary hover:text-background-primary transition-colors font-medium"

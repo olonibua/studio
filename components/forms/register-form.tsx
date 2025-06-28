@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuthStore } from "@/store/auth-store";
@@ -30,19 +30,32 @@ export default function RegisterForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { register: registerUser } = useAuthStore();
+
+  // Get role from URL parameters
+  const roleFromUrl = searchParams.get('role');
+  const defaultRole = (roleFromUrl === 'seller' || roleFromUrl === 'buyer') ? roleFromUrl : 'buyer';
 
   const {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
-      role: "buyer",
+      role: defaultRole as "buyer" | "seller",
     },
   });
+
+  // Set role from URL on component mount
+  useEffect(() => {
+    if (roleFromUrl === 'seller' || roleFromUrl === 'buyer') {
+      setValue('role', roleFromUrl as "buyer" | "seller");
+    }
+  }, [roleFromUrl, setValue]);
 
   const selectedRole = watch("role");
 

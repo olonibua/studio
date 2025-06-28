@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { useAuthStore } from "@/store/auth-store";
@@ -23,8 +23,32 @@ export default function Header() {
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
+  // Ref for mobile menu container
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
+
   const totalItems = getTotalItems();
   const wishlistCount = getWishlistCount();
+
+  // Handle click outside mobile menu
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isMobileMenuOpen &&
+        mobileMenuRef.current &&
+        mobileMenuButtonRef.current &&
+        !mobileMenuRef.current.contains(event.target as Node) &&
+        !mobileMenuButtonRef.current.contains(event.target as Node)
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <>
@@ -65,9 +89,12 @@ export default function Header() {
               </div>
 
               {/* Right Side Actions */}
-              <div className=" items-center space-x-4 hidden md:flex">
+              <div className=" items-center space-x-4 ">
                 {/* Theme Toggle */}
-                <ThemeToggle />
+
+                <div className="hidden md:block">
+                  <ThemeToggle />
+                </div>
 
                 {/* Mobile Search Icon */}
                 <button 
@@ -131,6 +158,7 @@ export default function Header() {
 
                 {/* Mobile Menu Button */}
                 <button
+                  ref={mobileMenuButtonRef}
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                   className="md:hidden text-text-secondary hover:text-text-primary transition-colors"
                 >
@@ -150,25 +178,45 @@ export default function Header() {
 
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
-              <div className="md:hidden border-t border-neutral-800 py-4">
+              <div ref={mobileMenuRef} className="md:hidden border-t border-neutral-800 py-4">
                 <nav className="space-y-2">
-                  <Link href="/products" className="block text-text-secondary hover:text-text-primary transition-colors py-2">
+                  <Link 
+                    href="/products" 
+                    className="block text-text-secondary hover:text-text-primary transition-colors py-2"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
                     Products
                   </Link>
-                  <Link href="/categories" className="block text-text-secondary hover:text-text-primary transition-colors py-2">
+                  <Link 
+                    href="/categories" 
+                    className="block text-text-secondary hover:text-text-primary transition-colors py-2"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
                     Categories
                   </Link>
-                  <Link href="/artists" className="block text-text-secondary hover:text-text-primary transition-colors py-2">
+                  <Link 
+                    href="/artists" 
+                    className="block text-text-secondary hover:text-text-primary transition-colors py-2"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
                     Artists
                   </Link>
-                  <Link href="/create" className="block text-text-secondary hover:text-text-primary transition-colors py-2">
+                  <Link 
+                    href="/create" 
+                    className="block text-text-secondary hover:text-text-primary transition-colors py-2"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
                     Gift Cards
                   </Link>
                   
                   {/* Mobile User Actions */}
                   {user && (
                     <>
-                      <Link href="/dashboard?tab=wishlist" className="block text-text-secondary hover:text-text-primary transition-colors py-2">
+                      <Link 
+                        href="/dashboard?tab=wishlist" 
+                        className="block text-text-secondary hover:text-text-primary transition-colors py-2"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
                         Wishlist ({wishlistCount})
                       </Link>
                       <button
@@ -191,10 +239,18 @@ export default function Header() {
                   
                   {!user && (
                     <div className="pt-4 border-t border-neutral-800 space-y-2">
-                      <Link href="/login" className="block text-text-secondary hover:text-text-primary transition-colors py-2">
+                      <Link 
+                        href="/login" 
+                        className="block text-text-secondary hover:text-text-primary transition-colors py-2"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
                         Sign In
                       </Link>
-                      <Link href="/register" className="block bg-text-primary text-background-primary px-4 py-2 rounded hover:bg-text-secondary transition-colors text-center">
+                      <Link 
+                        href="/register" 
+                        className="block bg-text-primary text-background-primary px-4 py-2 rounded hover:bg-text-secondary transition-colors text-center"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
                         Join
                       </Link>
                     </div>

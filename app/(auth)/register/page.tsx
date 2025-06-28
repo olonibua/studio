@@ -1,5 +1,10 @@
+import { Suspense } from "react";
 import Header from "@/components/layout/header";
 import RegisterForm from "@/components/forms/register-form";
+
+function RegisterFormWrapper() {
+  return <RegisterForm />;
+}
 
 export default function RegisterPage() {
   return (
@@ -16,7 +21,25 @@ export default function RegisterPage() {
           </p>
         </div>
         
-        <RegisterForm />
+        <Suspense fallback={
+          <div className="w-full max-w-md mx-auto">
+            <div className="bg-background-secondary border border-neutral-800 rounded-lg p-8">
+              <div className="animate-pulse">
+                <div className="h-4 bg-background-tertiary rounded w-3/4 mx-auto mb-4"></div>
+                <div className="h-4 bg-background-tertiary rounded w-1/2 mx-auto mb-8"></div>
+                <div className="space-y-4">
+                  <div className="h-10 bg-background-tertiary rounded"></div>
+                  <div className="h-10 bg-background-tertiary rounded"></div>
+                  <div className="h-10 bg-background-tertiary rounded"></div>
+                  <div className="h-10 bg-background-tertiary rounded"></div>
+                  <div className="h-10 bg-background-tertiary rounded"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        }>
+          <RegisterFormWrapper />
+        </Suspense>
       </div>
     </div>
   );

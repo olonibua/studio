@@ -65,7 +65,7 @@ export default function Header() {
               </div>
 
               {/* Right Side Actions */}
-              <div className="flex items-center space-x-4">
+              <div className=" items-center space-x-4 hidden md:flex">
                 {/* Theme Toggle */}
                 <ThemeToggle />
 

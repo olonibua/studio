@@ -5,9 +5,6 @@ import { useAuthStore } from "@/store/auth-store";
 import { useRouter } from "next/navigation";
 import Header from "@/components/layout/header";
 
-// Force dynamic rendering for authentication-dependent pages
-export const dynamic = 'force-dynamic';
-
 export default function DashboardPage() {
   const { user, isLoading, checkAuth } = useAuthStore();
   const router = useRouter();

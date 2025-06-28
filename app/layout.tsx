@@ -129,7 +129,7 @@ export default function RootLayout({
         <ThemeProvider>
           <div className="relative min-h-screen bg-background-primary text-text-primary">
             {/* PWA Install Prompt */}
-            <div id="pwa-install-prompt" className="hidden" />
+            {/* <div id="pwa-install-prompt" className="hidden" /> */}
             {children}
           </div>
         </ThemeProvider>

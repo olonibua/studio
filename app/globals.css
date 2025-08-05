@@ -9,7 +9,8 @@
   --text-primary: #ffffff;
   --text-secondary: #cccccc;
   --text-muted: #888888;
-  --accent: #ffffff;
+  --accent: #f8f8f8;
+  --accent-text: #1a1a1a;
   --neutral-800: #262626;
   --neutral-700: #404040;
 }
@@ -22,7 +23,8 @@
   --text-primary: #000000;
   --text-secondary: #333333;
   --text-muted: #666666;
-  --accent: #000000;
+  --accent: #1a1a1a;
+  --accent-text: #f8f8f8;
   --neutral-800: #e5e5e5;
   --neutral-700: #d4d4d4;
 }
@@ -92,6 +94,18 @@ html.theme-white {
 
 .bg-accent {
   background-color: var(--accent);
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+.text-accent-text {
+  color: var(--accent-text);
+}
+
+.border-accent {
+  border-color: var(--accent);
 }
 
 .border-neutral-800 {

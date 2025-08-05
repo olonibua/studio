@@ -28,43 +28,29 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: "MOSÉ - Authentic African Art & Gifts",
-  description: "Discover authentic African art, handcrafted jewelry, textiles, and unique gifts from talented artisans across the continent. Premium quality, cultural heritage, and sustainable craftsmanship.",
-  keywords: "African art, handcrafted gifts, artisan jewelry, African textiles, cultural crafts, authentic African products",
-  authors: [{ name: "MOSÉ Team" }],
-  creator: "MOSÉ",
-  publisher: "MOSÉ",
+  title: "MVP Development Studio - From Idea to Launch in 2 Weeks",
+  description: "Professional MVP development studio helping founders build and validate their ideas with speed, precision, and elegance. Get your product to market in just 2 weeks.",
+  keywords: "MVP development, startup development, web app development, mobile app development, SaaS development, rapid prototyping, startup studio",
+  authors: [{ name: "MVP Studio Team" }],
+  creator: "MVP Development Studio",
+  publisher: "MVP Development Studio",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'MOSÉ Art',
-    startupImage: [
-      {
-        url: '/icons/splash-640x1136.png',
-        media: '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
-      },
-      {
-        url: '/icons/splash-750x1334.png', 
-        media: '(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)'
-      },
-      {
-        url: '/icons/splash-1242x2208.png',
-        media: '(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)'
-      }
-    ]
+    title: 'MVP Studio',
   },
   openGraph: {
-    title: "MOSÉ - Authentic African Art & Gifts",
-    description: "Discover authentic African art and handcrafted gifts from talented artisans",
-    url: "https://mose.art",
-    siteName: "MOSÉ",
+    title: "MVP Development Studio - From Idea to Launch in 2 Weeks",
+    description: "Professional MVP development studio helping founders build and validate their ideas with speed, precision, and elegance.",
+    url: "https://mvpstudio.dev",
+    siteName: "MVP Development Studio",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "MOSÉ - Authentic African Art",
+        alt: "MVP Development Studio",
       },
     ],
     locale: "en_US",
@@ -72,8 +58,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MOSÉ - Authentic African Art & Gifts",
-    description: "Discover authentic African art and handcrafted gifts from talented artisans",
+    title: "MVP Development Studio - From Idea to Launch in 2 Weeks",
+    description: "Professional MVP development studio helping founders build and validate their ideas with speed, precision, and elegance.",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -87,17 +73,13 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
   other: {
     'mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-status-bar-style': 'black-translucent',
-    'apple-mobile-web-app-title': 'MOSÉ',
-    'application-name': 'MOSÉ',
+    'apple-mobile-web-app-title': 'MVP Studio',
+    'application-name': 'MVP Studio',
     'msapplication-TileColor': '#000000',
-    'msapplication-config': '/browserconfig.xml',
     'theme-color': '#000000',
   }
 };

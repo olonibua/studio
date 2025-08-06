@@ -29,33 +29,33 @@ export default function HomePage() {
 
         {/* Hero Content */}
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-light mt-10 mb-4 tracking-wide text-white drop-shadow-lg">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-light mt-32 xs:mt-10 mb-4 tracking-wide text-white drop-shadow-lg">
             BUILD YOUR MVP
           </h1>
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-light mb-4 text-white/90 drop-shadow">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-light mb-2 xs:mb-4 text-white/90 drop-shadow">
             In Just 2 Weeks
           </h2>
-          <p className="text-lg md:text-xl lg:text-2xl text-white/80 font-light max-w-3xl mx-auto leading-relaxed mb-6 drop-shadow">
+          <p className="text-lg md:text-xl lg:text-2xl text-white/80 font-light max-w-3xl mx-auto leading-relaxed mb-2 xs:mb-6 drop-shadow">
             From idea to launch, we help founders build and validate their MVPs with speed, precision, and elegance
           </p>
           
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
             <Link
               href="/contact"
-              className="bg-white text-black px-10 py-4 text-lg font-medium rounded hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg"
+              className="bg-white text-black px-10 py-2 xs:py-4 text-lg font-medium rounded hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg"
             >
               START YOUR PROJECT
             </Link>
             <Link
               href="/portfolio"
-              className="border-2 border-white text-white px-10 py-4 text-lg font-medium rounded hover:bg-white hover:text-black transition-all transform hover:scale-105 shadow-lg"
+                className="border-2 border-white text-white px-10 py-2 xs:py-4 text-lg font-medium rounded hover:bg-white hover:text-black transition-all transform hover:scale-105 shadow-lg"
             >
               VIEW OUR WORK
             </Link>
           </div>
 
           {/* Trust indicators */}
-          <div className="mt-10 flex flex-wrap justify-center items-center gap-8 text-white/70">
+          <div className="mt-6 sm:mt-10 flex flex-wrap justify-center items-center gap-8 text-white/70">
             <div className="text-center">
               <div className="text-2xl font-bold mb-1">20+</div>
               <div className="text-sm uppercase tracking-wide">MVPs Launched</div>

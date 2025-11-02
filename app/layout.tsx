@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "MVP Development Studio - From Idea to Launch in 2 Weeks",
     description: "Professional MVP development studio helping founders build and validate their ideas with speed, precision, and elegance.",
-    url: "https://mvpstudio.dev",
+    url: "https://www.studiomvp.co.uk/",
     siteName: "MVP Development Studio",
     images: [
       {

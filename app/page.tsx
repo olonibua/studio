@@ -19,7 +19,7 @@ export default function HomePage() {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/social_u9499386881_a_cinematic_outdoor_scene_of_a_startup_founder_wo_383fca36-d486-455c-bbd6-770974221c22_2.mp4" type="video/mp4" />
+            <source src="/hero-video-compressed.mp4" type="video/mp4" />
             {/* Fallback gradient background */}
             <div className="w-full h-full bg-gradient-to-br from-background-tertiary to-background-secondary"></div>
           </video>

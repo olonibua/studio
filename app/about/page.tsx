@@ -56,7 +56,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="py-16">
+      {/* <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-serif font-light mb-6 text-text-primary">
@@ -102,7 +102,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Process Section */}
       <section className="py-16 bg-background-secondary">

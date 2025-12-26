@@ -37,7 +37,7 @@ ${message}
       to: ['support@studiomvp.co.uk', 'officialstudiomvp@gmail.com'],
       subject: `New Contact Form Submission from ${name}`,
       text: emailContent,
-      reply_to: email,
+      replyTo: email,
     });
 
     if (error) {

@@ -2,22 +2,34 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import {
   generatePaymentReference,
   initializePaystackPopup,
   formatAmountToKobo,
 } from "@/lib/paystack";
+import { useRouter } from "next/navigation";
 import { COHORT_CONFIG } from "@/lib/cohort/constants";
 
 const WHATSAPP_LINK = COHORT_CONFIG.whatsappLink;
 
 export default function CohortPage() {
+  const router = useRouter();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [showPayModal, setShowPayModal] = useState(false);
   const [payEmail, setPayEmail] = useState("");
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [paymentLoading, setPaymentLoading] = useState(false);
+
+  // Auto-redirect to login after successful payment
+  useEffect(() => {
+    if (paymentSuccess) {
+      const timer = setTimeout(() => {
+        router.push("/cohort/login");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [paymentSuccess, router]);
 
   const handlePay = useCallback(
     (e: React.FormEvent) => {
@@ -555,7 +567,7 @@ export default function CohortPage() {
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Payment successful!</h3>
                 <p className="text-text-muted text-sm mb-6">
-                  You&apos;re in. Log in to your dashboard to access everything.
+                  You&apos;re in. Redirecting you to login...
                 </p>
                 <Link
                   href="/cohort/login"

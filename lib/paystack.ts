@@ -168,10 +168,10 @@ export function initializePaystackPopup(
       currency: paymentData.currency,
       ref: paymentData.reference,
       metadata: paymentData.metadata,
-      onSuccess: (transaction: any) => {
+      callback: (transaction: any) => {
         onSuccess(transaction.reference);
       },
-      onCancel: () => {
+      onClose: () => {
         onClose();
       },
     });

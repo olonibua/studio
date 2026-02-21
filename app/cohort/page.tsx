@@ -72,7 +72,7 @@ export default function CohortPage() {
   return (
     <div className="min-h-screen bg-background-primary text-text-primary">
       {/* Header */}
-      <header className="border-b border-neutral-800">
+      <header className="relative z-50 border-b border-neutral-800">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="text-xl font-bold text-text-primary">
@@ -109,10 +109,12 @@ export default function CohortPage() {
               </svg>
             </button>
           </div>
+        </div>
 
-          {/* Mobile menu */}
-          {isMobileMenuOpen && (
-            <div className="md:hidden border-t border-neutral-800 py-4 space-y-3">
+        {/* Mobile menu - overlays content */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden absolute left-0 right-0 top-full bg-background-primary border-b border-neutral-800 shadow-lg">
+            <div className="container mx-auto px-4 py-4 space-y-3">
               <Link
                 href="/cohort/login"
                 className="block text-text-muted hover:text-text-primary transition-colors py-2"
@@ -130,8 +132,8 @@ export default function CohortPage() {
                 Pay Now
               </button>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </header>
 
       {/* Hero Section */}
@@ -397,17 +399,17 @@ export default function CohortPage() {
               {
                 quote: "I'd been sitting on my app idea for six months. Shipped it in two weeks during the program.",
                 name: "Amara K.",
-                role: "Product Designer at Figma",
+                role: "Product Designer",
               },
               {
                 quote: "I'm a PM who can't code. Or couldn't. I built and launched an internal tool my team uses every day.",
                 name: "James R.",
-                role: "Product Manager at Shopify",
+                role: "Product Manager",
               },
               {
                 quote: "The prompting techniques and MCP setup changed everything. I was barely scratching the surface before.",
-                name: "Priya S.",
-                role: "Full-Stack Developer at Vercel",
+                name: "Moses O.",
+                role: "Full-Stack Developer",
               },
             ].map((testimonial, i) => (
               <div
@@ -449,11 +451,11 @@ export default function CohortPage() {
 
             {/* USD Price */}
             <div className="bg-accent p-8 rounded-lg">
-              <div className="text-4xl md:text-5xl font-bold text-accent-text mb-2">
+              <div className="text-4xl md:text-5xl font-bold text-white mb-2">
                 ${COHORT_CONFIG.price.usd}
               </div>
-              <p className="text-sm font-medium text-accent-text/70 mb-1">USD</p>
-              <p className="text-accent-text/60 text-sm">One-time payment</p>
+              <p className="text-sm font-medium text-white/70 mb-1">USD</p>
+              <p className="text-white/60 text-sm">One-time payment</p>
             </div>
           </div>
 

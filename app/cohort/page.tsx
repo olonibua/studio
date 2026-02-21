@@ -2,12 +2,49 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import {
+  generatePaymentReference,
+  initializePaystackPopup,
+  formatAmountToKobo,
+} from "@/lib/paystack";
+import { COHORT_CONFIG } from "@/lib/cohort/constants";
 
-const WHATSAPP_LINK = "https://wa.me/2348149249926?text=Hi%2C%20I%27d%20like%20to%20apply%20for%20the%20Ship%20With%20AI%20cohort";
+const WHATSAPP_LINK = COHORT_CONFIG.whatsappLink;
 
 export default function CohortPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [showPayModal, setShowPayModal] = useState(false);
+  const [payEmail, setPayEmail] = useState("");
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const [paymentLoading, setPaymentLoading] = useState(false);
+
+  const handlePay = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      if (!payEmail) return;
+      setPaymentLoading(true);
+
+      initializePaystackPopup(
+        {
+          email: payEmail,
+          amount: formatAmountToKobo(COHORT_CONFIG.price.ngn),
+          currency: "NGN",
+          reference: generatePaymentReference(),
+        },
+        () => {
+          // onSuccess
+          setPaymentLoading(false);
+          setPaymentSuccess(true);
+        },
+        () => {
+          // onClose / onCancel
+          setPaymentLoading(false);
+        }
+      );
+    },
+    [payEmail]
+  );
 
   return (
     <div className="min-h-screen bg-background-primary text-text-primary">
@@ -18,14 +55,20 @@ export default function CohortPage() {
             <Link href="/" className="text-xl font-bold text-text-primary">
               Ship With AI
             </Link>
-            <a
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-accent text-accent-text px-5 py-2 rounded-full text-sm font-medium hover:opacity-90 transition-all"
-            >
-              Apply Now
-            </a>
+            <div className="flex items-center gap-3">
+              <Link
+                href="/cohort/login"
+                className="text-sm text-text-muted hover:text-text-primary transition-colors"
+              >
+                Student Login
+              </Link>
+              <button
+                onClick={() => setShowPayModal(true)}
+                className="bg-accent text-accent-text px-5 py-2 rounded-full text-sm font-medium hover:opacity-90 transition-all"
+              >
+                Pay Now
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -44,17 +87,23 @@ export default function CohortPage() {
                 Not a course. Not a tutorial. You build something real.
               </p>
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-10">
+                <button
+                  onClick={() => setShowPayModal(true)}
+                  className="bg-accent text-accent-text px-8 py-4 rounded-full font-semibold text-lg hover:opacity-90 transition-all"
+                >
+                  Pay Now — {COHORT_CONFIG.spots} spots only
+                </button>
                 <a
                   href={WHATSAPP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-accent text-accent-text px-8 py-4 rounded-full font-semibold text-lg hover:opacity-90 transition-all"
+                  className="border border-neutral-700 text-text-primary px-8 py-4 rounded-full font-semibold text-lg hover:bg-background-secondary transition-all"
                 >
-                  Apply Now — 50 spots only
+                  I have questions
                 </a>
               </div>
               <p className="text-sm text-text-muted mt-4">
-                Next cohort starts February 25. Limited to 50 spots.
+                Next cohort starts {COHORT_CONFIG.startDate}. Limited to {COHORT_CONFIG.spots} spots.
               </p>
             </div>
 
@@ -331,7 +380,7 @@ export default function CohortPage() {
             {/* NGN Price */}
             <div className="bg-background-secondary p-8 rounded-lg border border-neutral-800">
               <div className="text-4xl md:text-5xl font-bold text-text-primary mb-2">
-                ₦40,000
+                ₦{COHORT_CONFIG.price.ngn.toLocaleString()}
               </div>
               <p className="text-sm font-medium text-accent mb-1">NGN</p>
               <p className="text-text-muted text-sm">One-time payment</p>
@@ -340,27 +389,32 @@ export default function CohortPage() {
             {/* USD Price */}
             <div className="bg-accent p-8 rounded-lg">
               <div className="text-4xl md:text-5xl font-bold text-accent-text mb-2">
-                $30
+                ${COHORT_CONFIG.price.usd}
               </div>
               <p className="text-sm font-medium text-accent-text/70 mb-1">USD</p>
               <p className="text-accent-text/60 text-sm">One-time payment</p>
             </div>
           </div>
 
-          <div className="text-center mt-12">
-            <a
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
+          <div className="text-center mt-12 space-y-4">
+            <button
+              onClick={() => setShowPayModal(true)}
               className="inline-block bg-accent text-accent-text px-10 py-4 rounded-full font-semibold text-lg hover:opacity-90 transition-all"
             >
-              Apply Now — 50 spots only
-            </a>
-            <p className="text-sm text-text-muted mt-4">
-              Starts February 25 &middot; Message us on WhatsApp to apply
-            </p>
-            <p className="text-lg font-semibold text-text-primary mt-2">
-              08149249926
+              Pay Now — {COHORT_CONFIG.spots} spots only
+            </button>
+            <div>
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block border border-neutral-700 text-text-primary px-8 py-3 rounded-full font-medium hover:bg-background-secondary transition-all"
+              >
+                I have questions
+              </a>
+            </div>
+            <p className="text-sm text-text-muted">
+              Starts {COHORT_CONFIG.startDate}
             </p>
           </div>
         </div>
@@ -435,21 +489,29 @@ export default function CohortPage() {
               You&apos;ve got the idea. Now build it.
             </h2>
             <p className="text-lg text-text-muted mb-10">
-              Apply in 5 minutes. We&apos;ll get back to you within 48 hours.
+              Pay now and get instant access. Cohort starts {COHORT_CONFIG.startDate}.
             </p>
-            <a
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-accent text-accent-text px-10 py-4 rounded-full font-semibold text-lg hover:opacity-90 transition-all"
-            >
-              Apply Now — 50 spots only
-            </a>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <button
+                onClick={() => setShowPayModal(true)}
+                className="bg-accent text-accent-text px-10 py-4 rounded-full font-semibold text-lg hover:opacity-90 transition-all"
+              >
+                Pay Now — {COHORT_CONFIG.spots} spots only
+              </button>
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border border-neutral-700 text-text-primary px-8 py-4 rounded-full font-semibold text-lg hover:bg-background-secondary transition-all"
+              >
+                I have questions
+              </a>
+            </div>
             <p className="text-sm text-text-muted mt-6">
-              Next cohort starts February 25.
-            </p>
-            <p className="text-sm text-text-primary font-medium">
-              Build and ship your project in 2 weeks.
+              Already paid?{" "}
+              <Link href="/cohort/login" className="text-accent hover:underline">
+                Log in to your dashboard
+              </Link>
             </p>
           </div>
         </div>
@@ -464,6 +526,83 @@ export default function CohortPage() {
           </div>
         </div>
       </footer>
+
+      {/* Payment Modal */}
+      {showPayModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-background-primary border border-neutral-800 rounded-2xl w-full max-w-md p-8 relative">
+            <button
+              onClick={() => {
+                setShowPayModal(false);
+                if (paymentSuccess) {
+                  setPaymentSuccess(false);
+                  setPayEmail("");
+                }
+              }}
+              className="absolute top-4 right-4 text-text-muted hover:text-text-primary"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {paymentSuccess ? (
+              <div className="text-center">
+                <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Payment successful!</h3>
+                <p className="text-text-muted text-sm mb-6">
+                  You&apos;re in. Log in to your dashboard to access everything.
+                </p>
+                <Link
+                  href="/cohort/login"
+                  className="inline-block bg-accent text-accent-text px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-all"
+                >
+                  Go to Dashboard
+                </Link>
+              </div>
+            ) : (
+              <>
+                <h3 className="text-xl font-semibold mb-1">Pay for Ship With AI</h3>
+                <p className="text-text-muted text-sm mb-6">
+                  ₦{COHORT_CONFIG.price.ngn.toLocaleString()} &middot; One-time payment
+                </p>
+
+                <form onSubmit={handlePay} className="space-y-4">
+                  <div>
+                    <label htmlFor="pay-email" className="block text-sm font-medium mb-2">
+                      Email address
+                    </label>
+                    <input
+                      id="pay-email"
+                      type="email"
+                      required
+                      value={payEmail}
+                      onChange={(e) => setPayEmail(e.target.value)}
+                      placeholder="you@example.com"
+                      className="w-full bg-background-secondary border border-neutral-700 rounded-lg px-4 py-3 text-text-primary placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={paymentLoading}
+                    className="w-full bg-accent text-accent-text py-3 rounded-full font-semibold hover:opacity-90 transition-all disabled:opacity-50"
+                  >
+                    {paymentLoading ? "Opening Paystack..." : `Pay ₦${COHORT_CONFIG.price.ngn.toLocaleString()}`}
+                  </button>
+                </form>
+
+                <p className="text-xs text-text-muted text-center mt-4">
+                  Secure payment via Paystack. You&apos;ll use this email to log in after payment.
+                </p>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

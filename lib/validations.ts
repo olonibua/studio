@@ -207,6 +207,18 @@ export const reportSchema = z.object({
   evidence: z.array(z.string()).max(5, 'Maximum 5 evidence files allowed').optional(),
 });
 
+// Cohort Validations
+export const cohortEmailSchema = z.object({
+  email: z.string().email('Please enter a valid email address'),
+});
+
+export const cohortOTPSchema = z.object({
+  otp: z.string().length(6, 'Code must be 6 digits').regex(/^\d{6}$/, 'Code must be 6 digits'),
+});
+
+export type CohortEmailInput = z.infer<typeof cohortEmailSchema>;
+export type CohortOTPInput = z.infer<typeof cohortOTPSchema>;
+
 // Type exports for TypeScript
 export type LoginInput = z.infer<typeof loginSchema>;
 export type RegisterInput = z.infer<typeof registerSchema>;

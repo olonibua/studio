@@ -13,26 +13,47 @@ interface PaystackListResponse {
   data: PaystackTransaction[];
 }
 
+interface PaystackCustomerResponse {
+  status: boolean;
+  data: {
+    id: number;
+    customer_code: string;
+    email: string;
+  };
+}
+
+const headers = {
+  Authorization: `Bearer ${paystackConfig.secretKey}`,
+  "Content-Type": "application/json",
+};
+
 /** Checks whether the given email has a successful Paystack payment for the cohort amount. */
 export async function checkEmailHasPaid(email: string): Promise<boolean> {
-  const res = await fetch(
-    `${paystackConfig.baseUrl}/transaction?customer=${encodeURIComponent(email)}&status=success`,
-    {
-      headers: {
-        Authorization: `Bearer ${paystackConfig.secretKey}`,
-        "Content-Type": "application/json",
-      },
-    }
+  // Step 1: Look up customer by email to get their ID
+  const customerRes = await fetch(
+    `${paystackConfig.baseUrl}/customer/${encodeURIComponent(email)}`,
+    { headers }
   );
 
-  if (!res.ok) return false;
+  if (!customerRes.ok) return false;
 
-  const json: PaystackListResponse = await res.json();
-  if (!json.status || !json.data) return false;
+  const customerJson: PaystackCustomerResponse = await customerRes.json();
+  if (!customerJson.status || !customerJson.data) return false;
+
+  // Step 2: Query transactions using the customer ID
+  const txRes = await fetch(
+    `${paystackConfig.baseUrl}/transaction?customer=${customerJson.data.id}&status=success`,
+    { headers }
+  );
+
+  if (!txRes.ok) return false;
+
+  const txJson: PaystackListResponse = await txRes.json();
+  if (!txJson.status || !txJson.data) return false;
 
   const cohortAmountKobo = COHORT_CONFIG.price.ngn * 100;
 
-  return json.data.some(
+  return txJson.data.some(
     (tx) => tx.status === "success" && tx.amount >= cohortAmountKobo
   );
 }

@@ -20,6 +20,7 @@ export default function CohortPage() {
   const [payEmail, setPayEmail] = useState("");
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [paymentLoading, setPaymentLoading] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Auto-redirect to login after successful payment
   useEffect(() => {
@@ -37,17 +38,27 @@ export default function CohortPage() {
       if (!payEmail) return;
       setPaymentLoading(true);
 
+      const reference = generatePaymentReference();
+
       initializePaystackPopup(
         {
           email: payEmail,
           amount: formatAmountToKobo(COHORT_CONFIG.price.ngn),
           currency: "NGN",
-          reference: generatePaymentReference(),
+          reference,
         },
         () => {
-          // onSuccess
+          // onSuccess — send receipt email in the background
           setPaymentLoading(false);
           setPaymentSuccess(true);
+
+          fetch("/api/cohort/payment-success", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ reference, email: payEmail }),
+          }).catch(() => {
+            // Receipt is best-effort, don't block the user
+          });
         },
         () => {
           // onClose / onCancel
@@ -60,14 +71,16 @@ export default function CohortPage() {
 
   return (
     <div className="min-h-screen bg-background-primary text-text-primary">
-      {/* Minimal Header */}
+      {/* Header */}
       <header className="border-b border-neutral-800">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="text-xl font-bold text-text-primary">
               Ship With AI
             </Link>
-            <div className="flex items-center gap-3">
+
+            {/* Desktop nav */}
+            <div className="hidden md:flex items-center gap-3">
               <Link
                 href="/cohort/login"
                 className="text-sm text-text-muted hover:text-text-primary transition-colors"
@@ -81,7 +94,43 @@ export default function CohortPage() {
                 Pay Now
               </button>
             </div>
+
+            {/* Mobile hamburger */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden text-text-muted hover:text-text-primary transition-colors"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
           </div>
+
+          {/* Mobile menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden border-t border-neutral-800 py-4 space-y-3">
+              <Link
+                href="/cohort/login"
+                className="block text-text-muted hover:text-text-primary transition-colors py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Student Login
+              </Link>
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setShowPayModal(true);
+                }}
+                className="w-full bg-accent text-accent-text px-5 py-3 rounded-full text-sm font-medium hover:opacity-90 transition-all"
+              >
+                Pay Now
+              </button>
+            </div>
+          )}
         </div>
       </header>
 

@@ -9,7 +9,7 @@ export const COHORT_CONFIG = {
   duration: "2 weeks",
   whatsappLink:
     "https://wa.me/2348149249926?text=Hi%2C%20I%27d%20like%20to%20ask%20about%20the%20Ship%20With%20AI%20cohort",
-  whatsappGroupLink: "https://chat.whatsapp.com/YOUR_GROUP_LINK",
+  whatsappGroupLink: "https://chat.whatsapp.com/IrzCfLNRJo5BzaNSqTay8G",
   resources: [
     {
       title: "Week 1 — Learn the tools & build",

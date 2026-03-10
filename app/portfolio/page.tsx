@@ -17,7 +17,7 @@ export default function PortfolioPage() {
               Our Portfolio
             </h1>
             <p className="text-xl md:text-2xl text-text-muted font-light leading-relaxed">
-              Real MVPs we've built for real founders. Each project was delivered 
+              Real products we've built for real clients. Each project was delivered
               within our 2-week timeline and is now live in production.
             </p>
           </div>
@@ -29,8 +29,8 @@ export default function PortfolioPage() {
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 text-center">
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-accent mb-2">20+</div>
-              <div className="text-sm uppercase tracking-wide text-text-muted">MVPs Launched</div>
+              <div className="text-3xl md:text-4xl font-bold text-accent mb-2">25+</div>
+              <div className="text-sm uppercase tracking-wide text-text-muted">Projects Launched</div>
             </div>
             <div className="hidden md:block w-px h-12 bg-neutral-700"></div>
             <div>
@@ -59,12 +59,36 @@ export default function PortfolioPage() {
               Featured Projects
             </h2>
             <p className="text-xl text-text-muted max-w-3xl mx-auto leading-relaxed">
-              A selection of our most successful MVP launches across different industries
+              A selection of our most successful launches across different industries
             </p>
           </div>
           
           <div className="space-y-24">
             {[
+              {
+                title: "LetsGoHalf - Bill & Cost Splitting Platform",
+                category: "Social / FinTech Platform",
+                description: "A social platform that helps people find their perfect match to split bills and costs. Features community-driven sharing for roommates, subscriptions, carpooling, and groceries — making everyday expenses more affordable through smart matching.",
+                timeline: "14 days",
+                techStack: ["Next.js", "Node.js", "PostgreSQL", "Stripe"],
+                features: ["Smart matching algorithm", "Roommates matching", "Subscription sharing", "Carpooling coordination", "Groceries splitting", "Community insights"],
+                results: ["Growing user community", "Multiple cost-sharing categories", "Active social engagement"],
+                link: "letsgohalf.com",
+                image: "/img/Screenshot 2026-03-10 at 10.46.52.png",
+                alt: "LetsGoHalf platform showing bill splitting and cost sharing features"
+              },
+              {
+                title: "SendReach - Influencer Marketing Platform",
+                category: "SaaS / Marketing Platform",
+                description: "An influencer marketing platform that connects businesses with verified influencers who deliver real results. No agencies, no middlemen — just direct brand-influencer collaboration with campaign tracking and performance analytics.",
+                timeline: "14 days",
+                techStack: ["Next.js", "Node.js", "PostgreSQL", "Tailwind CSS"],
+                features: ["Influencer discovery & browsing", "Campaign management", "Performance analytics (+247% ROI)", "Business & influencer onboarding", "Founders Circle community", "Multi-platform support"],
+                results: ["500+ verified influencers", "10M+ combined audience reach", "98% influencer verification rate"],
+                link: "sendreach.app",
+                image: "/img/Screenshot 2026-03-10 at 14.23.59.png",
+                alt: "SendReach influencer marketing platform connecting businesses with influencers"
+              },
               {
                 title: "EMURECCIMA - Community Financial Chamber",
                 category: "FinTech Platform",
@@ -79,7 +103,7 @@ export default function PortfolioPage() {
               },
               {
                 title: "ErandWork - Service Marketplace",
-                category: "Marketplace Platform", 
+                category: "Marketplace Platform",
                 description: "A digital marketplace connecting clients with verified local professionals for daily tasks and errands. Features secure payments, professional verification, and streamlined booking system.",
                 timeline: "10 days",
                 techStack: ["Next.js", "Firebase", "Stripe", "Google Maps API"],
@@ -93,7 +117,7 @@ export default function PortfolioPage() {
                 title: "MOSÉ - African Art E-commerce",
                 category: "E-commerce Platform",
                 description: "An elegant e-commerce platform showcasing authentic African art and handcrafted gifts from talented artisans. Features artist profiles, cultural storytelling, and global shipping.",
-                timeline: "14 days", 
+                timeline: "14 days",
                 techStack: ["Next.js", "Shopify API", "Stripe", "Tailwind CSS"],
                 features: ["Artisan marketplace", "Cultural storytelling", "Global shipping", "Authenticity verification", "Multi-currency support"],
                 results: ["Active artisan community", "International reach", "Successful marketplace"],
@@ -109,7 +133,7 @@ export default function PortfolioPage() {
                 techStack: ["Next.js", "React", "Chart.js", "Tailwind CSS"],
                 features: ["Investment metrics dashboard", "Tourism showcase", "Economic data visualization", "Multi-language support", "Investment inquiry system"],
                 results: ["Government partnership", "Public platform launch", "Tourism promotion success"],
-                link: "eyesonimo.com", 
+                link: "eyesonimo.com",
                 image: "/img/Screenshot 2025-08-05 at 20.26.21.png",
                 alt: "Eyes on Imo government portal showing investment opportunities"
               },
@@ -183,11 +207,20 @@ export default function PortfolioPage() {
                 </div>
                 
                 <div className={`aspect-video rounded-lg overflow-hidden border border-neutral-800 ${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
-                  <img
-                    src={project.image}
-                    alt={project.alt}
-                    className="w-full h-full object-cover"
-                  />
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.alt}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-background-tertiary flex items-center justify-center">
+                      <div className="text-center text-text-muted text-sm px-4">
+                        <div className="text-4xl mb-4">📧</div>
+                        <p className="italic">{project.alt}</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -289,7 +322,7 @@ export default function PortfolioPage() {
               Technologies We Master
             </h2>
             <p className="text-lg text-text-muted max-w-3xl mx-auto leading-relaxed">
-              We use proven, modern technologies to ensure your MVP is scalable and maintainable
+              We use proven, modern technologies to ensure your product is scalable and maintainable
             </p>
           </div>
           
@@ -315,7 +348,7 @@ export default function PortfolioPage() {
               Ready to Join Our Success Stories?
             </h2>
             <p className="text-lg text-text-muted mb-8 leading-relaxed">
-              Let's build your MVP and help you validate your idea in the market
+              Let's build your next project and help you validate your idea in the market
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

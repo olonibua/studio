@@ -16,8 +16,8 @@ export default function AboutPage() {
               About Our Studio
             </h1>
             <p className="text-xl md:text-2xl text-text-muted font-light leading-relaxed">
-              We're a team of experienced engineers and designers who specialize in rapid MVP development, 
-              helping founders turn their ideas into market-ready products in just 2 weeks.
+              We're a team of experienced engineers and designers who specialize in rapid product development,
+              helping founders and businesses turn their ideas into market-ready products in just 2 weeks.
             </p>
           </div>
         </div>
@@ -38,7 +38,7 @@ export default function AboutPage() {
                   to validate their idea quickly and affordably.
                 </p>
                 <p className="text-lg text-text-muted leading-relaxed">
-                  That's why we've perfected our 2-week MVP process, combining proven frameworks, 
+                  That's why we've perfected our 2-week development process, combining proven frameworks, 
                   efficient workflows, and cutting-edge tools to deliver production-ready applications 
                   at startup speed.
                 </p>
@@ -195,7 +195,7 @@ export default function AboutPage() {
               Ready to Work Together?
             </h2>
             <p className="text-lg text-text-muted mb-8 leading-relaxed">
-              Let's discuss your project and see how we can help bring your MVP to life
+              Let's discuss your project and see how we can help bring your idea to life
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

@@ -37,7 +37,7 @@ export default function Header() {
       <div className="fixed top-0 left-0 right-0 z-50">
         {/* Promotional Banner */}
         <div className="bg-accent text-accent-text text-center py-2 text-xs md:text-sm font-medium tracking-wide">
-          MVP DEVELOPMENT STUDIO | FROM IDEA TO LAUNCH IN 2 WEEKS
+          APP DEVELOPMENT STUDIO | FROM IDEA TO LAUNCH IN 2 WEEKS
         </div>
 
         {/* Main Header */}
@@ -81,7 +81,7 @@ export default function Header() {
                   href="/contact"
                   className="hidden md:block bg-text-primary text-background-primary px-6 py-2 rounded hover:bg-text-secondary transition-colors font-medium"
                 >
-                  Start Your MVP
+                  Start Your Project
                 </Link>
 
                 {/* Mobile Menu Button */}
@@ -150,7 +150,7 @@ export default function Header() {
                       className="block bg-text-primary text-background-primary px-4 py-2 rounded hover:bg-text-secondary transition-colors text-center"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      Start Your MVP
+                      Start Your Project
                     </Link>
                   </div>
                 </nav>

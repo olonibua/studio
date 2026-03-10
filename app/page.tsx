@@ -1,6 +1,7 @@
 "use client";
 
 import Header from "@/components/layout/header";
+import HeroAnimated from "@/components/ui/hero-animated";
 import Link from "next/link";
 
 export default function HomePage() {
@@ -8,80 +9,8 @@ export default function HomePage() {
     <div className="min-h-screen bg-background-primary text-text-primary">
       <Header />
       
-      {/* Hero Section with Video Background */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Video Background */}
-        <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-          >
-            <source src="/hero-video-compressed.mp4" type="video/mp4" />
-            {/* Fallback gradient background */}
-            <div className="w-full h-full bg-gradient-to-br from-background-tertiary to-background-secondary"></div>
-          </video>
-          {/* Video overlay for better text readability */}
-          <div className="absolute inset-0 bg-black/40"></div>
-        </div>
-
-        {/* Hero Content */}
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-light mt-32 xs:mt-10 mb-4 tracking-wide text-white drop-shadow-lg">
-            BUILD YOUR MVP
-          </h1>
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-light mb-2 xs:mb-4 text-white/90 drop-shadow">
-            In Just 2 Weeks
-          </h2>
-          <p className="text-lg md:text-xl lg:text-2xl text-white/80 font-light max-w-3xl mx-auto leading-relaxed mb-2 xs:mb-6 drop-shadow">
-            From idea to launch, we help founders build and validate their MVPs with speed, precision, and elegance
-          </p>
-          
-          <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
-            <Link
-              href="/contact"
-              className="bg-white text-black px-10 py-2 xs:py-4 text-lg font-medium rounded hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg"
-            >
-              START YOUR PROJECT
-            </Link>
-            <Link
-              href="/portfolio"
-                className="border-2 border-white text-white px-10 py-2 xs:py-4 text-lg font-medium rounded hover:bg-white hover:text-black transition-all transform hover:scale-105 shadow-lg"
-            >
-              VIEW OUR WORK
-            </Link>
-          </div>
-
-          {/* Trust indicators */}
-          <div className="mt-6 sm:mt-10 flex flex-wrap justify-center items-center gap-8 text-white/70">
-            <div className="text-center">
-              <div className="text-2xl font-bold mb-1">20+</div>
-              <div className="text-sm uppercase tracking-wide">MVPs Launched</div>
-            </div>
-            <div className="hidden md:block w-px h-12 bg-white/30"></div>
-            <div className="text-center">
-              <div className="text-2xl font-bold mb-1">2 Weeks</div>
-              <div className="text-sm uppercase tracking-wide">Average Timeline</div>
-            </div>
-            <div className="hidden md:block w-px h-12 bg-white/30"></div>
-            <div className="text-center">
-              <div className="text-2xl font-bold mb-1">95%</div>
-              <div className="text-sm uppercase tracking-wide">Client Satisfaction</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-          <div className="animate-bounce">
-            <svg className="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </div>
-        </div>
-      </section>
+      {/* Hero Section - Animated */}
+      <HeroAnimated />
 
       {/* Our Services Section */}
       <section className="py-24 bg-background-secondary">
@@ -91,8 +20,8 @@ export default function HomePage() {
               What We Build
             </h2>
             <p className="text-xl text-text-muted max-w-3xl mx-auto leading-relaxed">
-              We specialize in rapid MVP development across multiple industries, 
-              helping founders validate their ideas and get to market fast
+              We specialize in rapid product development across multiple industries,
+              helping founders and businesses bring their ideas to market fast
             </p>
           </div>
           
@@ -179,7 +108,7 @@ export default function HomePage() {
               Why Choose Our Studio
             </h2>
             <p className="text-xl text-text-muted max-w-3xl mx-auto leading-relaxed">
-              We combine technical expertise with business acumen to deliver MVPs that not only work but thrive in the market
+              We combine technical expertise with business acumen to deliver products that not only work but thrive in the market
             </p>
           </div>
           
@@ -208,7 +137,7 @@ export default function HomePage() {
 
           {/* Call to Action */}
           <div className="text-center mt-16 p-12 bg-accent/10 rounded-lg border border-accent/20">
-            <h3 className="text-3xl font-serif font-light mb-4 text-text-primary">Ready to Build Your MVP?</h3>
+            <h3 className="text-3xl font-serif font-light mb-4 text-text-primary">Ready to Build Your Next Project?</h3>
             <p className="text-lg text-text-muted mb-8 max-w-2xl mx-auto">
               Let's discuss your idea and create a plan to bring it to life in just 2 weeks
             </p>

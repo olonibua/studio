@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/lib/contexts/theme-context";
+import EnquiryPopup from "@/components/ui/enquiry-popup";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -28,29 +29,33 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: "MVP Development Studio - From Idea to Launch in 2 Weeks",
-  description: "Professional MVP development studio helping founders build and validate their ideas with speed, precision, and elegance. Get your product to market in just 2 weeks.",
-  keywords: "MVP development, startup development, web app development, mobile app development, SaaS development, rapid prototyping, startup studio",
-  authors: [{ name: "MVP Studio Team" }],
-  creator: "MVP Development Studio",
-  publisher: "MVP Development Studio",
+  title: "Studio MVP - App Development Studio | From Idea to Launch in 2 Weeks",
+  description: "Professional app development studio helping founders and businesses build world-class digital products with speed, precision, and elegance. Get your product to market in just 2 weeks.",
+  keywords: "web development, app development, startup development, web app development, mobile app development, SaaS development, rapid prototyping, development studio",
+  authors: [{ name: "Studio MVP Team" }],
+  creator: "Studio MVP",
+  publisher: "Studio MVP",
+  icons: {
+    icon: '/logo.jpg',
+    apple: '/logo.jpg',
+  },
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'MVP Studio',
+    title: 'Studio MVP',
   },
   openGraph: {
-    title: "MVP Development Studio - From Idea to Launch in 2 Weeks",
-    description: "Professional MVP development studio helping founders build and validate their ideas with speed, precision, and elegance.",
+    title: "Studio MVP - App Development Studio | From Idea to Launch in 2 Weeks",
+    description: "Professional web development studio helping founders and businesses build world-class digital products with speed, precision, and elegance.",
     url: "https://www.studiomvp.co.uk/",
-    siteName: "MVP Development Studio",
+    siteName: "Studio MVP",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "MVP Development Studio",
+        alt: "Studio MVP",
       },
     ],
     locale: "en_US",
@@ -58,8 +63,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MVP Development Studio - From Idea to Launch in 2 Weeks",
-    description: "Professional MVP development studio helping founders build and validate their ideas with speed, precision, and elegance.",
+    title: "Studio MVP - App Development Studio | From Idea to Launch in 2 Weeks",
+    description: "Professional web development studio helping founders and businesses build world-class digital products with speed, precision, and elegance.",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -77,8 +82,8 @@ export const metadata: Metadata = {
     'mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-status-bar-style': 'black-translucent',
-    'apple-mobile-web-app-title': 'MVP Studio',
-    'application-name': 'MVP Studio',
+    'apple-mobile-web-app-title': 'Studio MVP',
+    'application-name': 'Studio MVP',
     'msapplication-TileColor': '#000000',
     'theme-color': '#000000',
   }
@@ -114,6 +119,7 @@ export default function RootLayout({
             {/* <div id="pwa-install-prompt" className="hidden" /> */}
             {children}
           </div>
+          <EnquiryPopup />
         </ThemeProvider>
       </body>
     </html>

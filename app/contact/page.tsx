@@ -74,11 +74,11 @@ export default function ContactPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-serif font-light mb-8 tracking-wide">
-              Let's Build Your MVP
+              Let's Build Something Great
             </h1>
             <p className="text-xl md:text-2xl text-text-muted font-light leading-relaxed">
               Ready to turn your idea into reality? Get in touch and let's discuss 
-              how we can help you launch your MVP in just 2 weeks.
+              how we can help you launch your product in just 2 weeks.
             </p>
           </div>
         </div>
@@ -106,7 +106,7 @@ export default function ContactPage() {
               {submitStatus === 'error' && (
                 <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
                   <p className="text-red-400 text-sm">
-                    Sorry, there was an error sending your message. Please try again or email us directly at support@studiomvp.co.uk
+                    Sorry, there was an error sending your message. Please try again or email us directly at officialstudiomvp@gmail.com
                   </p>
                 </div>
               )}
@@ -265,7 +265,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-text-primary mb-1">Email</h3>
-                      <p className="text-text-muted">support@studiomvp.co.uk</p>
+                      <p className="text-text-muted">officialstudiomvp@gmail.com</p>
                       <p className="text-text-muted text-sm">We respond within 24 hours</p>
                     </div>
                   </div>
@@ -306,7 +306,7 @@ export default function ContactPage() {
                 </h3>
                 <div className="space-y-3">
                   <Link href="/portfolio" className="block text-accent hover:text-accent/80 transition-colors">
-                    → View our portfolio of successful MVPs
+                    → View our portfolio of successful projects
                   </Link>
                   <Link href="/services" className="block text-accent hover:text-accent/80 transition-colors">
                     → Learn about our services and pricing
@@ -327,7 +327,7 @@ export default function ContactPage() {
                 </h3>
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-medium text-text-primary mb-1">How much does an MVP cost?</h4>
+                    <h4 className="font-medium text-text-primary mb-1">How much does a project cost?</h4>
                     <p className="text-text-muted text-sm">Projects typically range from $5,000 to $20,000 depending on complexity and features.</p>
                   </div>
                   <div>
@@ -363,7 +363,7 @@ export default function ContactPage() {
               </div>
               <h3 className="font-semibold text-text-primary mb-2">Instagram</h3>
               <p className="text-text-muted text-sm mb-3">Follow us for updates</p>
-              <a href="https://www.instagram.com/hey_studiomvp/" target="_blank" rel="noopener noreferrer" className="text-pink-400 hover:text-pink-300 text-sm">@hey_studiomvp</a>
+              <a href="https://www.instagram.com/studiomvp_/" target="_blank" rel="noopener noreferrer" className="text-pink-400 hover:text-pink-300 text-sm">@studiomvp_</a>
             </div>
 
             <div className="text-center p-6 bg-background-primary rounded-lg border border-neutral-800">
@@ -385,7 +385,7 @@ export default function ContactPage() {
               </div>
               <h3 className="font-semibold text-text-primary mb-2">LinkedIn</h3>
               <p className="text-text-muted text-sm mb-3">Connect with our team</p>
-              <a href="#" className="text-purple-400 hover:text-purple-300 text-sm">MVP Studio</a>
+              <a href="https://www.linkedin.com/company/studiomvp" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300 text-sm">studiomvp</a>
             </div>
 
             <div className="text-center p-6 bg-background-primary rounded-lg border border-neutral-800">
@@ -397,20 +397,6 @@ export default function ContactPage() {
               <h3 className="font-semibold text-text-primary mb-2">WhatsApp</h3>
               <p className="text-text-muted text-sm mb-3">Quick chat about your project</p>
               <a href="https://wa.me/447350162342" className="text-green-400 hover:text-green-300 text-sm">+447350162342</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Map Placeholder */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="aspect-video bg-background-secondary rounded-lg flex items-center justify-center border border-neutral-800 max-w-4xl mx-auto">
-            <div className="text-center text-text-muted">
-              <div className="text-5xl mb-4">🗺️</div>
-              <p className="italic text-sm px-6">
-                Insert interactive map: Google Maps showing England location with office pin
-              </p>
             </div>
           </div>
         </div>

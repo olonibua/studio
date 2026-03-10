@@ -81,7 +81,7 @@ export default function TestimonialsPage() {
               Ready to Become Our Next Success Story?
             </h2>
             <p className="text-lg text-text-muted mb-8 leading-relaxed">
-              Join the founders who trusted us with their MVP and are now thriving in the market
+              Join the founders who trusted us with their project and are now thriving in the market
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

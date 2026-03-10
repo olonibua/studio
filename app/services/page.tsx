@@ -16,7 +16,7 @@ export default function ServicesPage() {
               Our Services
             </h1>
             <p className="text-xl md:text-2xl text-text-muted font-light leading-relaxed">
-              Comprehensive MVP development services designed to get your product to market 
+              Comprehensive development services designed to get your product to market
               fast without compromising on quality or user experience.
             </p>
           </div>
@@ -181,7 +181,7 @@ export default function ServicesPage() {
               Additional Services
             </h2>
             <p className="text-lg text-text-muted max-w-3xl mx-auto leading-relaxed">
-              Specialized services to enhance your MVP and support your growth
+              Specialized services to enhance your product and support your growth
             </p>
           </div>
           
@@ -300,7 +300,7 @@ export default function ServicesPage() {
               {
                 name: "Professional", 
                 price: "$2,000 - $3,500 (£1,400 - £2,500)",
-                description: "Full-featured MVPs with advanced functionality",
+                description: "Full-featured apps with advanced functionality",
                 features: ["Full web/mobile app", "User authentication", "Payment integration", "Admin dashboard", "2 weeks delivery", "60 days support"],
                 popular: true
               },
@@ -354,7 +354,7 @@ export default function ServicesPage() {
               Ready to Start Your Project?
             </h2>
             <p className="text-lg text-text-muted mb-8 leading-relaxed">
-              Let's discuss your requirements and create a custom proposal for your MVP
+              Let's discuss your requirements and create a custom proposal for your project
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

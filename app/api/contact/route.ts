@@ -34,7 +34,7 @@ ${message}
     // Send email to both addresses
     const { data, error } = await resend.emails.send({
       from: 'Studio MVP <noreply@studiomvp.co.uk>',
-      to: ['support@studiomvp.co.uk', 'officialstudiomvp@gmail.com'],
+      to: ['officialstudiomvp@gmail.com'],
       subject: `New Contact Form Submission from ${name}`,
       text: emailContent,
       replyTo: email,

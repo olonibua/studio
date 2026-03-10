@@ -17,7 +17,7 @@ export default function PricingPage() {
             </h1>
             <p className="text-xl md:text-2xl text-text-muted font-light leading-relaxed">
               Fixed-price packages with no hidden fees or surprises. 
-              Choose the plan that fits your MVP needs and budget.
+              Choose the plan that fits your project needs and budget.
             </p>
           </div>
         </div>
@@ -58,7 +58,7 @@ export default function PricingPage() {
                 name: "Professional", 
                 price: "$2,000 - $3,500",
                 priceGBP: "£1,400 - £2,500",
-                description: "Full-featured MVPs with advanced functionality",
+                description: "Full-featured apps with advanced functionality",
                 features: [
                   "Full web/mobile app",
                   "User authentication", 
@@ -216,7 +216,7 @@ export default function PricingPage() {
               Additional Services
             </h2>
             <p className="text-lg text-text-muted max-w-3xl mx-auto leading-relaxed">
-              Optional add-ons to enhance your MVP
+              Optional add-ons to enhance your product
             </p>
           </div>
           

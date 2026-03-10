@@ -60,7 +60,7 @@ Submitted: ${new Date().toLocaleString('en-GB', {
     // Send email notification
     const { data, error } = await resend.emails.send({
       from: 'Studio MVP <noreply@studiomvp.co.uk>',
-      to: ['support@studiomvp.co.uk', 'officialstudiomvp@gmail.com'],
+      to: ['officialstudiomvp@gmail.com'],
       subject: `New Testimonial from ${name} (${company}) - ${starRating}`,
       text: emailContent,
       replyTo: email || undefined,

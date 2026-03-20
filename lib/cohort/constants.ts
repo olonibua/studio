@@ -1,7 +1,7 @@
 export const COHORT_CONFIG = {
   name: "Ship With AI",
   price: {
-    ngn: 40_000,
+    ngn: 100_000,
     usd: 30,
   },
   startDate: "February 25, 2026",

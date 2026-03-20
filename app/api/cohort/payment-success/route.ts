@@ -88,7 +88,7 @@ export async function POST(request: Request) {
             </table>
           </div>
 
-          <p style="margin-bottom: 8px;">Cohort starts <strong>${COHORT_CONFIG.startDate}</strong>.</p>
+          <p style="margin-bottom: 8px;">You&rsquo;re all set!</p>
           <p style="margin-bottom: 24px;">Use this email to log in to your student dashboard when it opens.</p>
 
           <p style="color: #999; font-size: 13px; margin-top: 32px;">— ${COHORT_CONFIG.name} Team</p>

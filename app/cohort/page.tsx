@@ -166,7 +166,7 @@ export default function CohortPage() {
                 </a>
               </div>
               <p className="text-sm text-text-muted mt-4">
-                Next cohort starts {COHORT_CONFIG.startDate}. Limited to {COHORT_CONFIG.spots} spots.
+                Limited to {COHORT_CONFIG.spots} spots.
               </p>
             </div>
 
@@ -477,7 +477,7 @@ export default function CohortPage() {
               </a>
             </div>
             <p className="text-sm text-text-muted">
-              Starts {COHORT_CONFIG.startDate}
+              Limited spots available
             </p>
           </div>
         </div>
@@ -552,7 +552,7 @@ export default function CohortPage() {
               You&apos;ve got the idea. Now build it.
             </h2>
             <p className="text-lg text-text-muted mb-10">
-              Pay now and get instant access. Cohort starts {COHORT_CONFIG.startDate}.
+              Pay now and get instant access.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button

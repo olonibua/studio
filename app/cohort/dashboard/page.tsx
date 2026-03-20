@@ -68,8 +68,7 @@ export default function CohortDashboardPage() {
               Welcome to {COHORT_CONFIG.name}
             </h1>
             <p className="text-text-muted">
-              Your cohort starts {COHORT_CONFIG.startDate}. Here&apos;s everything
-              you need.
+              Here&apos;s everything you need.
             </p>
           </div>
 
@@ -77,10 +76,6 @@ export default function CohortDashboardPage() {
           <div className="bg-background-secondary border border-neutral-800 rounded-lg p-6 md:p-8">
             <h2 className="text-lg font-semibold mb-4">Cohort Details</h2>
             <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-              <div>
-                <dt className="text-text-muted">Start date</dt>
-                <dd className="font-medium">{COHORT_CONFIG.startDate}</dd>
-              </div>
               <div>
                 <dt className="text-text-muted">Duration</dt>
                 <dd className="font-medium">{COHORT_CONFIG.duration}</dd>
